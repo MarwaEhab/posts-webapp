@@ -35,14 +35,11 @@ function PostDetails() {
       });
   }, []);
 
-  console.log("comments", comments);
-
   const handleAddComment = (event) => {
     fetch(`${API}posts/${id}/comments`, {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify({
-        postId: 1,
-        id: "1",
+        postId: "1",
         name: "id labore ex et quam laborum",
         email: "Eliseo@gardner.biz",
         body: newComment,
@@ -53,6 +50,8 @@ function PostDetails() {
     })
       .then((response) => response.json())
       .then((json) => {
+        // const newComment = comments.push(json);
+        // setCommonets(newComment);
         console.log("comment added", json);
       });
   };
@@ -82,12 +81,13 @@ function PostDetails() {
         {userData && userData.company && userData.company.name}
       </h4>
       <div className="commentSection">
-        {comments.map((comment, index) => (
-          <div className="comment" key={index}>
-            <img src="/imgs/user.png" alt="user Picture" className="useImg" />
-            <p>{comment.body}</p>
-          </div>
-        ))}
+        {comments &&
+          comments.map((comment, index) => (
+            <div className="comment" key={index}>
+              <img src="/imgs/user.png" alt="user Picture" className="useImg" />
+              <p>{comment.body}</p>
+            </div>
+          ))}
         <div className="commentInput">
           <input
             type="text"

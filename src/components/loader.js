@@ -6,12 +6,12 @@ function Loader() {
       <Oval
         height={80}
         width={80}
-        color="#d32f2f"
+        color="#69bac9"
         wrapperStyle={{}}
         wrapperClass=""
         visible={true}
         ariaLabel="oval-loading"
-        secondaryColor="#d32f2f"
+        secondaryColor="#69bac9"
         strokeWidth={2}
         strokeWidthSecondary={2}
       />

@@ -10,6 +10,12 @@ body {
   background-color: #f7ffff !important;
 }
 
+@media screen and (max-width: 768px) {
+  body {
+    padding: 2rem;
+  }
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -25,8 +31,36 @@ a {
   cursor: pointer;
 }
 
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
 .App {
   background-color: #f7ffff !important;
+}
+
+.actionBtn {
+  cursor: pointer;
+}
+
+.actionBtn h1 {
+  text-align: center;
+  margin: 5rem 0;
 }
 
 .postCard {
@@ -71,15 +105,33 @@ a {
   padding: 0 4rem;
 }
 
+@media screen and (max-width: 768px) {
+  .postDetails {
+    padding: 0;
+  }
+}
+
 .postDetails h1 {
   text-transform: capitalize;
   color: #f8f6f6;
   width: 90%;
 }
 
+@media screen and (max-width: 768px) {
+  .postDetails h1 {
+    width: 100%;
+  }
+}
+
 .postDetails p {
   color: #f8f6f6;
   width: 60%;
+}
+
+@media screen and (max-width: 768px) {
+  .postDetails p {
+    width: 80%;
+  }
 }
 
 .postDetails .postDetailsImg {
@@ -185,5 +237,6 @@ a {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   color: #69bac9;
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */

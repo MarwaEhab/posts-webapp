@@ -16,6 +16,10 @@ body {
   padding: 6rem;
   font-family: "Poppins", sans-serif;
   background-color: $bgColor !important;
+
+  @media screen and (max-width: 768px) {
+    padding: 2rem;
+  }
 }
 
 * {
@@ -30,10 +34,29 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
 .App {
   background-color: $bgColor !important;
 }
-
+.actionBtn {
+  cursor: pointer;
+  h1 {
+    text-align: center;
+    margin: 5rem 0;
+  }
+}
 .postCard {
   box-shadow: 1px 1px 1px 1px rgba(88, 87, 88, 0.1);
   border-radius: 16px;
@@ -70,14 +93,23 @@ a {
 // POST DETAILS PAGE
 .postDetails {
   padding: 0 4rem;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
   h1 {
     text-transform: capitalize;
     color: #f8f6f6;
     width: 90%;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
   p {
     color: #f8f6f6;
     width: 60%;
+    @media screen and (max-width: 768px) {
+      width: 80%;
+    }
   }
   .postDetailsImg {
     position: absolute;
@@ -148,6 +180,7 @@ a {
         top: 50%;
         transform: translateY(-50%);
         color: $mainColor;
+        cursor: pointer;
       }
     }
   }
