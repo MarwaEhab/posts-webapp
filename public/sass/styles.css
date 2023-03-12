@@ -56,11 +56,16 @@ a {
 
 .actionBtn {
   cursor: pointer;
+  margin: 5rem auto;
+  text-align: center;
+  width: 100%;
+  color: unset;
+  background-color: unset;
+  border: unset;
 }
 
 .actionBtn h1 {
   text-align: center;
-  margin: 5rem 0;
 }
 
 .postCard {
@@ -215,6 +220,7 @@ a {
 
 .postDetails .commentSection .commentInput {
   position: relative;
+  margin-top: 1rem;
 }
 
 .postDetails .commentSection .commentInput input {

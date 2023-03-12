@@ -1,0 +1,9 @@
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import PostDetails from "../pages/postDetails";
+
+test("render comment input properly", () => {
+  render(<PostDetails />);
+  const comment = screen.getByPlaceholderText("write your comment");
+  expect(comment).toHaveAttribute("type", "text");
+});

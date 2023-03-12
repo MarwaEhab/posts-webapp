@@ -1,0 +1,20 @@
+import { render } from "@testing-library/react";
+import PostCard from "../components/postCard";
+
+test("renders postCard", () => {
+  const post = {
+    userId: "1",
+    id: "1",
+    title: "test",
+    body: "test",
+  };
+
+  render(
+    <PostCard
+      postItem={{ userId: "1", id: "1", title: "test", body: "test" }}
+    />
+  );
+  const { container } = render(<PostCard />);
+  const cardElemnt = container.querySelector(".heading");
+  expect(cardElemnt).toHaveTextContent(`${post.title}`);
+});

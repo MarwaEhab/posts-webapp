@@ -9,7 +9,6 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/posts/:id" element={<PostDetails />} />
       <Route path="/:userId" element={<UserPost />} />
-      {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   );
 }

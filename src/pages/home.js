@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import PostCard from "../components/postCard";
 import Loader from "../components/loader";
+import { API } from "../constants/constants";
+import LoadBtn from "../components/loadBtn";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -9,7 +11,7 @@ function Home() {
   const [visible, setVisible] = useState(20);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch(`${API}posts`)
       .then((res) => res.json())
       .then((json) => {
         setPosts(json);
@@ -27,8 +29,8 @@ function Home() {
       {isLoadingData ? (
         <Loader />
       ) : (
-        <>
-          <h1> Home</h1>
+        <div>
+          <h1>Home</h1>
           <Grid container spacing={8}>
             {posts &&
               posts.slice(0, visible).map((post, index) => (
@@ -37,10 +39,8 @@ function Home() {
                 </Grid>
               ))}
           </Grid>
-          <butoon size="medium" onClick={showMoreItem} className="actionBtn">
-            <h1>Load More</h1>
-          </butoon>
-        </>
+          <LoadBtn title={"Load More"} onClick={showMoreItem} />
+        </div>
       )}
     </div>
   );

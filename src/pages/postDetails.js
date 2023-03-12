@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PhoneIcon from "@mui/icons-material/Phone";
 import BusinessIcon from "@mui/icons-material/Business";
 import SendIcon from "@mui/icons-material/Send";
+import Loader from "../components/loader";
 
 function PostDetails() {
   const [postDetails, setPostDetails] = useState([]);
@@ -14,6 +15,7 @@ function PostDetails() {
   const location = useLocation();
   const userId = location.state?.userId;
   const [newComment, setNewComment] = useState("");
+  const [isLoadingData, setIsLoadingData] = useState(true);
 
   useEffect(() => {
     fetch(`${API}posts/${id}`)
@@ -32,6 +34,7 @@ function PostDetails() {
       .then((res) => res.json())
       .then((json) => {
         setComments(json);
+        setIsLoadingData(false);
       });
   }, []);
 
@@ -58,50 +61,62 @@ function PostDetails() {
 
   return (
     <div className="postDetails">
-      <img
-        src="/imgs/post1.jpg"
-        alt="post Picture"
-        className="postDetailsImg"
-      />
-
-      <h1>{postDetails.title}</h1>
-      <p>{postDetails.body}</p>
-      <Link to={`/${userId}`} state={{ userName: userData && userData.name }}>
-        <div className="userName">
-          <img src="/imgs/user.png" alt="user Picture" className="useImg" />
-          <h3>{userData && userData.name}</h3>
-        </div>
-      </Link>
-      <h4>
-        <PhoneIcon />
-        {userData && userData.phone}
-      </h4>
-      <h4>
-        <BusinessIcon />
-        {userData && userData.company && userData.company.name}
-      </h4>
-      <div className="commentSection">
-        {comments &&
-          comments.map((comment, index) => (
-            <div className="comment" key={index}>
+      {isLoadingData ? (
+        <Loader />
+      ) : (
+        <>
+          <img
+            src="/imgs/post1.jpg"
+            alt="post Picture"
+            className="postDetailsImg"
+          />
+          <h1>{postDetails.title}</h1>
+          <p>{postDetails.body}</p>
+          <Link
+            to={`/${userId}`}
+            state={{ userName: userData && userData.name }}
+          >
+            <div className="userName">
               <img src="/imgs/user.png" alt="user Picture" className="useImg" />
-              <p>{comment.body}</p>
+              <h3>{userData && userData.name}</h3>
             </div>
-          ))}
-        <div className="commentInput">
-          <form onSubmit={handleAddComment}>
-            <input
-              type="text"
-              placeholder="write your comment"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-            <button>
-              <SendIcon />
-            </button>
-          </form>
-        </div>
-      </div>
+          </Link>
+          <h4>
+            <PhoneIcon />
+            {userData && userData.phone}
+          </h4>
+          <h4>
+            <BusinessIcon />
+            {userData && userData.company && userData.company.name}
+          </h4>
+          <div className="commentSection">
+            {comments &&
+              comments.map((comment, index) => (
+                <div className="comment" key={index}>
+                  <img
+                    src="/imgs/user.png"
+                    alt="user Picture"
+                    className="useImg"
+                  />
+                  <p>{comment.body}</p>
+                </div>
+              ))}
+            <div className="commentInput">
+              <form onSubmit={handleAddComment}>
+                <input
+                  type="text"
+                  placeholder="write your comment"
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                />
+                <button>
+                  <SendIcon />
+                </button>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
