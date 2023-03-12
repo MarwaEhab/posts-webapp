@@ -6,7 +6,7 @@ import Loader from "../components/loader";
 function Home() {
   const [posts, setPosts] = useState([]);
   const [isLoadingData, setIsLoadingData] = useState(true);
-  const [visible, setVisible] = useState(9);
+  const [visible, setVisible] = useState(20);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -16,8 +16,10 @@ function Home() {
         setIsLoadingData(false);
       });
   }, []);
+
+  //List pagination if greater than 20 items
   const showMoreItem = () => {
-    setVisible((prev) => prev + 9);
+    setVisible((prev) => prev + 20);
   };
 
   return (

@@ -230,13 +230,19 @@ a {
   outline: unset !important;
 }
 
-.postDetails .commentSection .commentInput .MuiSvgIcon-root {
+.postDetails .commentSection .commentInput button {
   position: absolute;
   right: 25px;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  color: #69bac9;
   cursor: pointer;
+  border: unset;
+  background-color: unset;
+  color: transparent;
+}
+
+.postDetails .commentSection .commentInput button .MuiSvgIcon-root {
+  color: #69bac9;
 }
 /*# sourceMappingURL=styles.css.map */

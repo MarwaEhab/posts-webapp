@@ -9,7 +9,7 @@ import SendIcon from "@mui/icons-material/Send";
 function PostDetails() {
   const [postDetails, setPostDetails] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [comments, setCommonets] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
   const location = useLocation();
   const userId = location.state?.userId;
@@ -31,15 +31,16 @@ function PostDetails() {
     fetch(`${API}posts/${id}/comments`)
       .then((res) => res.json())
       .then((json) => {
-        setCommonets(json);
+        setComments(json);
       });
   }, []);
 
   const handleAddComment = (event) => {
+    event.preventDefault();
     fetch(`${API}posts/${id}/comments`, {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify({
-        postId: "1",
+        postId: 1,
         name: "id labore ex et quam laborum",
         email: "Eliseo@gardner.biz",
         body: newComment,
@@ -50,10 +51,9 @@ function PostDetails() {
     })
       .then((response) => response.json())
       .then((json) => {
-        // const newComment = comments.push(json);
-        // setCommonets(newComment);
-        console.log("comment added", json);
+        setComments([...comments, json]);
       });
+    setNewComment("");
   };
 
   return (
@@ -89,13 +89,17 @@ function PostDetails() {
             </div>
           ))}
         <div className="commentInput">
-          <input
-            type="text"
-            placeholder="write your comment"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          />
-          <SendIcon onClick={handleAddComment} />
+          <form onSubmit={handleAddComment}>
+            <input
+              type="text"
+              placeholder="write your comment"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <button>
+              <SendIcon />
+            </button>
+          </form>
         </div>
       </div>
     </div>

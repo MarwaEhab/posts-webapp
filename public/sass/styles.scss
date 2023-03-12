@@ -174,13 +174,18 @@ a {
           outline: unset !important;
         }
       }
-      .MuiSvgIcon-root {
+      button {
         position: absolute;
         right: 25px;
         top: 50%;
         transform: translateY(-50%);
-        color: $mainColor;
         cursor: pointer;
+        border: unset;
+        background-color: unset;
+        color: transparent;
+        .MuiSvgIcon-root {
+          color: $mainColor;
+        }
       }
     }
   }

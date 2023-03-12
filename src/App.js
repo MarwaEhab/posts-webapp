@@ -1,11 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/index";
+import Home from "./pages/home";
 import PostDetails from "./pages/postDetails";
 import UserPost from "./pages/userPost";
-
-// import Header from "./components/header";
-// import NotFound from "./pages/notFound";
-// import SearchResult from "./pages/searchResult";
 
 function App() {
   return (
